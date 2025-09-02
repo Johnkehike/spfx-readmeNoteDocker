@@ -92,5 +92,37 @@ This extension illustrates the following concepts:
 - install git in your machine and open vs code.
 - initialise the repo
 - stage the changes by right clicking the changes and clik stage the changes
-- 
+
+Setup SPFx in Docker
+
+Have you ever being tired of jumping between different node versions in yoour SharePoint framework development career? NVM came for the rescue as developers were able to switch between different node versions on the same machine. however that wasn't not so helpful as SPFx required different versions of other libraries based on the node version being used. so your yoeman generator version had to be the right one for your project. and other libraris like gulp also was also required. if you are like me, that requires other global version of these libraries for other projects, it eventually becomes hectic managing different versions of software for different projects leading to unavoidable errors in most cases. 
+
+I will be demostrating how to use docker containers to manage SPFx projects even without local installation of node on your machine allowing you to spin up projects faster and test your configurations locally. in our next article, we will also be looking at deploying your project in what i call the enterprise way leveraging azure devops to deploy SPFx packages to app catalog sites.
+
+requirements
+sign up to dockerhup and take a look at the microsoft official docker image for SPFx/pnpj in dockerhub.com
+i'm sure git should be handy but if you are new to git, download and install git - (not a major requirement).
+create a folder you are using for your project in your local machine - this is where you will store the codes from your container and work with your codes locally in VSCode
+download and install docker desktop and run the app using your signed up account from earlier, login to the app
+enable file sharing for the folder created in docker desktop by going to settings then resources and go to the file sharing tab and browse the folder for your project locally then click the add button to share the folder of your chosen
+
+Installation
+open command prompt either via terminal prompt in vscode or using your command prompt whichever works best for you. cd into your project folder and run the command below
+docker run -it --rm --name spfx-helloworld -v ${PWD}:/usr/app/spfx -p 4321:4321 -p 35729:35729 m365pnp/spfx
+if you want to persist the container so when your system shuts down you can still run the container, you can remove the --rm flag in your command.
+m365pnp/spfx is the image in dockerhub where your container will be created from using microsoft's official docker image.
+-v flag maps your current folder directory to the usr/app/spfx directory in yourcontainer.
+-it gives you an interactive session to the docker container where you can continue with your installation. so you will noticed you are on the prompt usr/app/spfx in your command prompt after the command finish running.
+
+next you want to run the yeoman generator inside the container using yo @microsoft/harepoint  - from here proceed with your spfx project installation steps as normal.
+
+after answering all the questions in the project setup wizard/steps, you can then do the usual gulp trust-dev-cert to install the certificate needed .....
+finally make the below 2 changes to the your project in the paths specified for each and then run gulp serve to see your work locally
+ - add line to config/write-manifest.json - "debugBasePath": "http://localhost:35729" 
+ - add line to config/serve.json - "hostname": "0.0.0.0",
+once gulp serve is running, take the workbecnh url for your SPO site and test in your browser to see your project. - eg https://xxxxx.sharepoint.com/_layouts/15/workbench.aspx
+as the code is running from your docker container, first run the url http://localhost:35729 before loading your workbench.
+
+references
+
 
