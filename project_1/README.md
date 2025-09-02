@@ -126,5 +126,6 @@ as the code is running from your docker container, first run the url http://loca
 references
 - Danny Jessee (2023). _Scaling up a SharePoint Framework Development Team_ [Scaling up SharePoint Framework Development for Enterprises]. https://app.pluralsight.com/library/courses/scaling-up-sharepoint-framework-development-enterprises/table-of-contents [2/9/2025]
 - Microsoft 365 Patterns and Practices (2025) m365pnp/spfx []. https://hub.docker.com/r/m365pnp/spfx [2025]
-
+- https://learn.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-development-environment
+- https://learn.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/build-a-hello-world-web-part
 
