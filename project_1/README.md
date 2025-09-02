@@ -118,7 +118,7 @@ next you want to run the yeoman generator inside the container using yo @microso
 
 after answering all the questions in the project setup wizard/steps, you can then do the usual gulp trust-dev-cert to install the certificate needed .....
 finally make the below 2 changes to the your project in the paths specified for each and then run gulp serve to see your work locally
- - add line to config/write-manifest.json - "debugBasePath": "http://localhost:35729" 
+ - add line to config/write-manifest.json - "debugBasePath": "http://localhost:4321" 
  - add line to config/serve.json - "hostname": "0.0.0.0",
 once gulp serve is running, take the workbecnh url for your SPO site and test in your browser to see your project. - eg https://xxxxx.sharepoint.com/_layouts/15/workbench.aspx
 as the code is running from your docker container, first run the url http://localhost:35729 before loading your workbench.
