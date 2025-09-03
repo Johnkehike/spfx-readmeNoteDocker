@@ -109,8 +109,7 @@ enable file sharing for the folder created in docker desktop by going to setting
 Installation
 open command prompt either via terminal prompt in vscode or using your command prompt whichever works best for you. cd into your project folder and run the command below
 docker run -it --rm --name spfx-helloworld -v ${PWD}:/usr/app/spfx -p 4321:4321 -p 35729:35729 m365pnp/spfx
-if you want to persist your created container image so when your container is stopped you can still start the container on docker again, you will have to remove the the --rm flag in your command.
-m365pnp/spfx is the base image in dockerhub where your container will be created from using microsoft's official docker image.
+m365pnp/spfx is the base image in dockerhub which your container will be created from.
 -v flag maps your current folder directory to the usr/app/spfx directory in yourcontainer.
 -it gives you an interactive session to the docker container where you can continue with your installation. so you will noticed you are on the prompt usr/app/spfx in your command prompt after the command finish running.
 
@@ -123,7 +122,8 @@ once gulp serve is running, take the workbecnh url for your SPO site and test in
 as the code is running from your docker container, first run the url http://localhost:35729 before loading your workbench.
 open the url in unsafe mode before open
 
-if you have an old project, there are SPFx images for older versions of SPFx. you can find the list here. - https://hub.docker.com/r/m365pnp/spfx
+if you have an old project, there are SPFx images for older versions of SPFx. you can find the list here. - https://hub.docker.com/r/m365pnp/spfx.
+N/B to run the image on an existing project, run the command followed by gulp trust-dev-cert and gulp serve
 
 references
 - Danny Jessee (2023). _Scaling up a SharePoint Framework Development Team_ [Scaling up SharePoint Framework Development for Enterprises]. https://app.pluralsight.com/library/courses/scaling-up-sharepoint-framework-development-enterprises/table-of-contents [2/9/2025]
