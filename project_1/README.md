@@ -117,11 +117,12 @@ m365pnp/spfx is the base image in dockerhub where your container will be created
 next you want to run the yeoman generator inside the container using yo @microsoft/harepoint  - from here proceed with your spfx project installation steps as normal.
 
 after answering all the questions in the project setup wizard/steps, you can then do the usual gulp trust-dev-cert to install the certificate needed .....
-finally make the below 2 changes to the your project in the paths specified for each and then run gulp serve to see your work locally
- - add line to config/write-manifest.json - "debugBasePath": "http://localhost:4321" 
- - add line to config/serve.json - "hostname": "0.0.0.0",
+finally make the below change to the your project and then run gulp trust-dev-cert && gulp serve to see your work locally
+ - add a line to the config/serve.json file - "hostname": "0.0.0.0",
 once gulp serve is running, take the workbecnh url for your SPO site and test in your browser to see your project. - eg https://xxxxx.sharepoint.com/_layouts/15/workbench.aspx
 as the code is running from your docker container, first run the url http://localhost:35729 before loading your workbench.
+
+if you have an old project, there are SPFx images for older versions of SPFx. you can find the list here. - https://hub.docker.com/r/m365pnp/spfx
 
 references
 - Danny Jessee (2023). _Scaling up a SharePoint Framework Development Team_ [Scaling up SharePoint Framework Development for Enterprises]. https://app.pluralsight.com/library/courses/scaling-up-sharepoint-framework-development-enterprises/table-of-contents [2/9/2025]
