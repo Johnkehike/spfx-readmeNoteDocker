@@ -15,7 +15,7 @@ jobs:
     vmImage: 'ubuntu-latest'
   environment: ${{ parameters.target_environment }}
   variables:
-  - group: ${{parameters.variable_group_name}} #m365_user_login, m365_user_password, m365_app_catalog_site_url
+  - group: ${{parameters.variable_group_name}} 
   strategy:
     runOnce:
       deploy:
@@ -31,7 +31,7 @@ jobs:
             secureFile: 'mycert.pem'
         - script: sudo npm install --global @pnp/cli-microsoft365
           displayName: Install CLI for Microsoft365
-        - script: m365 login --authType certificate --appId $(appId) --tenant $(tenantId) --certificateFile $(caCertificate.secureFilePath) #--password $(pfxPassword) #m365 login --authType password --userName $(m365_user_login) --password $(m365_user_password) --appId $(appId) --tenant $(tenantId) #m365 login $(m365_app_catalog_site_url) --authType secret --appId $(appId) --tenant $(tenantId) --secret $(authTypeValue)
+        - script: m365 login --authType certificate --appId $(appId) --tenant $(tenantId) --certificateFile $(caCertificate.secureFilePath) 
           displayName: Login to Microsoft 365
         - script: |
             CMD_GET_SPPKG_NAME=$(find $(Pipeline.Workspace)/drop -name '*.sppkg' -exec basename {} \;)
@@ -42,5 +42,5 @@ jobs:
             m365 spo app add --filePath "$(Pipeline.Workspace)/drop/sharepoint/solution/$(GetSharePointPackage.SpPkgFileName)" --appCatalogUrl $(m365_app_catalog_site_url) --overwrite
           displayName: Upload SharePoint package to Site Collection App Catalog
         - script: 
-            m365 spo app deploy --name $(GetSharePointPackage.SpPkgFileName) --appCatalogUrl $(m365_app_catalog_site_url) #--scope ${{ parameters.o365cli_app_catalog_scope }}
+            m365 spo app deploy --name $(GetSharePointPackage.SpPkgFileName) --appCatalogUrl $(m365_app_catalog_site_url) 
           displayName: Deploy SharePoint package
