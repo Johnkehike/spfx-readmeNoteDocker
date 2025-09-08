@@ -1,0 +1,5 @@
+ openssl genrsa -out mykey.key 2048
+ openssl req -new -key mykey.key -out mycsr.csr
+ openssl x509 -req -days 365 -in mycsr.csr -signkey mykey.key -out mycert.crt
+ openssl pkcs12 -export -out mycert.pfx -inkey mykey.key -in mycert.crt
+ openssl pkcs12 -in mycert.pfx -out mycert.pem -nodes
