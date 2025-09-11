@@ -148,3 +148,24 @@ references
 * Microsoft 365 Patterns and Practices (2025) m365pnp/spfx []. https://hub.docker.com/r/m365pnp/spfx [2025]
 * https://learn.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-development-environment
 * https://learn.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/build-a-hello-world-web-part
+
+
+
+## CREATE AZURE CONTAINER REGISTRY AND PUSH YOUR IMAGE FROM YOUR LOCAL DOCKER DESKTOP TO IT
+#first created the jokeh ACR instance in a resource group of my choice and then used the command below to connect to Azure using Azure cli in vs code and completing the tagging of my image and uploading accordingly
+
+
+az login --tenant acb5c3c9-6666-4768-bd0a-a8005dd65036
+az acr login --name jokeh
+## rename/retag the current local image of jokehi/jokeh to a tag in ACR - jokeh.azurecr.io
+docker tag jokehi/jokeh jokeh.azurecr.io/jokeh
+docker push jokeh.azurecr.io/jokeh
+
+
+## Run SPFx docker from ACR
+docker run -it --rm --name helloworld10 -v ${PWD}:/usr/app/spfx -p 4321:4321 -p 35729:35729 jokeh.azurecr.io/jokeh
+
+
+after all stuffs
+gulp trust-dev-cert
+gulp serve
